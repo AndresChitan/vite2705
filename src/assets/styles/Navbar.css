@@ -6,6 +6,7 @@
   --text-color: #333;
   --text-light: #fff;
   --bg-color: #f9f9f9;
+  --navbar-height: 80px;
 }
 
 * {
@@ -19,11 +20,19 @@
   color: var(--text-color);
   padding: 1rem 2rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  position: sticky;
+  position: fixed; /* Cambiar de sticky a fixed */
   top: 0;
-  z-index: 1000;
+  left: 0;
+  width: 100%;
+  height: var(--navbar-height);
+  z-index: 1000; /* Mantener este valor */
+  transition: left 0.3s ease; /* Añadir transición */
 }
-
+/* Añadir esta nueva regla para cuando el sidebar está abierto */
+.sidebar-open .navbar {
+  left: 280px;
+  width: calc(100% - 280px);
+}
 .navbar-container {
   display: flex;
   justify-content: space-between;
@@ -169,5 +178,119 @@
   .nav-cart {
     margin-left: 0;
     margin-top: 2rem;
+  }
+}
+
+/* Estilos para el botón del sidebar */
+.sidebar-toggle-icon {
+  display: none; /* Oculto por defecto en desktop */
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-right: 1rem;
+  transition: color 0.3s ease;
+}
+
+.sidebar-toggle-icon:hover {
+  color: var(--text-light);
+}
+
+/* Mostrar solo en pantallas grandes donde el menú móvil no está visible */
+@media (min-width: 769px) {
+  .sidebar-toggle-icon {
+    display: block;
+  }
+  
+  .mobile-menu-icon {
+    display: none;
+  }
+}
+
+/* Asegurar que el logo no se mueva cuando el sidebar está abierto */
+.navbar-logo {
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+}
+
+.content-shifted .navbar-logo {
+  margin-left: 0; /* Ajusta si necesitas compensar el sidebar */
+}
+
+/* Mantén todos tus estilos existentes y añade estos: */
+
+.sidebar-toggle-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-right: 1rem;
+  transition: all 0.3s ease;
+  padding: 0.5rem;
+}
+
+.sidebar-toggle-icon:hover {
+  color: var(--primary-dark);
+  transform: scale(1.1);
+}
+
+/* Asegurar que los botones no se superpongan */
+.navbar-container {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+  flex-grow: 1;
+}
+
+/* Ajustes para el menú móvil */
+.mobile-menu-icon {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sidebar-toggle-icon {
+    display: none;
+  }
+  
+  .mobile-menu-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+  
+  .nav-menu {
+    position: fixed;
+    top: 80px; /* Ajusta según altura de tu navbar */
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 80px);
+    background-color: var(--primary-dark);
+    transition: all 0.5s ease;
+    z-index: 998;
+  }
+  
+  .nav-menu.active {
+    left: 0;
+  }
+  
+  .nav-list {
+    flex-direction: column;
+    padding: 2rem;
+  }
+  
+  .nav-item {
+    margin: 1rem 0;
   }
 }

@@ -1,0 +1,34 @@
+.home-page {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Asegura espacio para el navbar fijo */
+.home-page > section:first-child {
+  padding-top: 80px;
+}
+
+/* Estilos para las secciones pares e impares */
+.home-page > section:nth-child(odd) {
+  background-color: #fff;
+}
+
+.home-page > section:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Espaciado entre secciones */
+.home-page > section {
+  padding: 4rem 2rem;
+}
+
+@media (max-width: 768px) {
+  .home-page > section {
+    padding: 3rem 1rem;
+  }
+  
+  .home-page > section:first-child {
+    padding-top: 70px;
+  }
+}

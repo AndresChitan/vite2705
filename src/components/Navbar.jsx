@@ -1,24 +1,27 @@
-
 import { useState } from 'react';
-import "../assets/styles/Navbar.css";
 import { FaShoppingCart, FaBars, FaTimes } from 'react-icons/fa';
+import "../assets/styles/Navbar.css";
 
-export const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+export const Navbar = ({ toggleSidebar, toggleMobileMenu, mobileMenuOpen }) => {
   const [cartItems, setCartItems] = useState(0);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
 
   return (
     <nav className="navbar">
       <div className="navbar-container">
+        {/* Botón para el sidebar (visible en desktop) */}
+        <button 
+          className="sidebar-toggle-icon" 
+          onClick={toggleSidebar}
+          aria-label="Abrir menú lateral"
+        >
+          <FaBars />
+        </button>
+        
         <div className="navbar-logo">
           <a href="/">Mi Tienda</a>
         </div>
         
-        <div className={`nav-menu ${isOpen ? 'active' : ''}`}>
+        <div className={`nav-menu ${mobileMenuOpen ? 'active' : ''}`}>
           <ul className="nav-list">
             <li className="nav-item">
               <a href="/" className="nav-link">Inicio</a>
@@ -39,8 +42,9 @@ export const Navbar = () => {
           </button>
         </div>
 
-        <div className="mobile-menu-icon" onClick={toggleMenu}>
-          {isOpen ? <FaTimes /> : <FaBars />}
+        {/* Botón para menú móvil (visible en mobile) */}
+        <div className="mobile-menu-icon" onClick={toggleMobileMenu}>
+          {mobileMenuOpen ? <FaTimes /> : <FaBars />}
         </div>
       </div>
     </nav>

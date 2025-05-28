@@ -1,3 +1,52 @@
-.estilos{
-    background-color: #f0f0f0;
+/* Estilos generales */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  transition: margin-left 0.3s ease;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden; /* Evita el scroll horizontal */
+}
+
+main {
+  flex: 1;
+  transition: margin-left 0.3s ease;
+  padding-top: 80px; /* Ajusta según altura de tu navbar */
+  position: relative;
+  z-index: 1; /* Asegura que el contenido esté por encima de la sidebar */
+}
+
+/* Transición para el desplazamiento del contenido con sidebar abierto */
+.content-shifted {
+  margin-left: 280px;
+}
+
+@media (max-width: 768px) {
+  .content-shifted {
+    margin-left: 0;
+  }
+  
+  /* Ocultar sidebar toggle en mobile */
+  .sidebar-toggle-icon {
+    display: none !important;
+  }
+  
+  /* Mostrar mobile menu toggle */
+  .mobile-menu-icon {
+    display: flex !important;
+  }
+}
+:root {
+  --primary-color: #bfbf6c;
+  --primary-dark: #9e9e5a;
+  --primary-light: #d8d89a;
+  --navbar-height: 80px; /* Añadido para consistencia */
+  --sidebar-width: 280px; /* Añadido para consistencia */
+  
 }
